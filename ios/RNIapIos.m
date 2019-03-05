@@ -131,11 +131,11 @@ RCT_EXPORT_METHOD(getAvailableItems:(RCTPromiseResolveBlock)resolve
 }
 
 
-RCT_EXPORT_METHOD(getAvailableItemsForUser:(NSString*)username resolve:(RCTPromiseResolveBlock)resolve
+/*RCT_EXPORT_METHOD(getAvailableItemsForUser:(NSString*)username resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject) {
     [self addPromiseForKey:@"availableItemsForUser" resolve:resolve reject:reject];
     [[SKPaymentQueue defaultQueue] restoreCompletedTransactionsWithApplicationUsername:username];
-}
+}*/
 
 RCT_EXPORT_METHOD(buyProduct:(NSString*)sku
                   resolve:(RCTPromiseResolveBlock)resolve
@@ -158,7 +158,7 @@ RCT_EXPORT_METHOD(buyProduct:(NSString*)sku
 }
 
 
-RCT_EXPORT_METHOD(buyProductWithUsername:(NSString*)sku username:(NSString*)username
+/*RCT_EXPORT_METHOD(buyProductWithUsername:(NSString*)sku username:(NSString*)username
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject) {
     autoReceiptConform = true;
@@ -177,7 +177,7 @@ RCT_EXPORT_METHOD(buyProductWithUsername:(NSString*)sku username:(NSString*)user
     } else {
         reject(@"E_DEVELOPER_ERROR", @"Invalid product ID.", nil);
     }
-}
+}*/
 
 
 
