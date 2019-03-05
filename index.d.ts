@@ -105,6 +105,9 @@ export function getSubscriptions(skus: string[]): Promise<Subscription<string>[]
  */
 export function getPurchaseHistory() : Promise<Purchase[]>;
 
+
+export function getPurchaseHistoryForUser(username: string) : Promise<Purchase[]>;
+
 /**
  * Get all purchases made by the user (either non-consumable, or haven't been consumed yet)
  * @returns {Promise<Purchase[]>}
@@ -128,7 +131,7 @@ export function buySubscription(sku: string, oldSku?: string, prorationMode?: nu
 export function buyProduct(sku: string) : Promise<ProductPurchase>;
 
 
-export function buyProductWithUsername(sku: string, username: username) : Promise<ProductPurchase>;
+export function buyProductWithUsername(sku: string, username: string) : Promise<ProductPurchase>;
 
 
 
