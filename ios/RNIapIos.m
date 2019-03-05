@@ -158,7 +158,7 @@ RCT_EXPORT_METHOD(buyProduct:(NSString*)sku
 }
 
 
-/*RCT_EXPORT_METHOD(buyProductWithUsername:(NSString*)sku username:(NSString*)username
+RCT_EXPORT_METHOD(buyProductWithUsername:(NSString*)sku username:(NSString*)username
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject) {
     autoReceiptConform = true;
@@ -177,7 +177,7 @@ RCT_EXPORT_METHOD(buyProduct:(NSString*)sku
     } else {
         reject(@"E_DEVELOPER_ERROR", @"Invalid product ID.", nil);
     }
-}*/
+}
 
 
 
@@ -540,4 +540,4 @@ static NSString *RCTKeyForInstance(id instance)
     return [NSString stringWithFormat:@"%p", instance];
 }
 
-z@end
+@end
