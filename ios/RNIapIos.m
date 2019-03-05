@@ -133,7 +133,7 @@ RCT_EXPORT_METHOD(getAvailableItems:(RCTPromiseResolveBlock)resolve
 
 RCT_EXPORT_METHOD(getAvailableItemsForUser: (NSString*)username resolve(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject) {
-    [self addPromiseForKey:@"availableItems" resolve:resolve reject:reject];
+    [self addPromiseForKey:@"availableItemsForUser" resolve:resolve reject:reject];
     [[SKPaymentQueue defaultQueue] restoreCompletedTransactionsWithApplicationUsername:username];
 }
 
