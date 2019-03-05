@@ -127,6 +127,11 @@ export function buySubscription(sku: string, oldSku?: string, prorationMode?: nu
  */
 export function buyProduct(sku: string) : Promise<ProductPurchase>;
 
+
+export function buyProductWithUsername(sku: string, username: username) : Promise<ProductPurchase>;
+
+
+
 /**
  * Buy a product with a specified quantity (iOS only)
  * @param {string} sku The product's sku/ID

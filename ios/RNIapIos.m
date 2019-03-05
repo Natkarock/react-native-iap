@@ -130,6 +130,13 @@ RCT_EXPORT_METHOD(getAvailableItems:(RCTPromiseResolveBlock)resolve
   [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
 }
 
+
+RCT_EXPORT_METHOD(getAvailableItemsForUser: (NSString*)username resolve(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject) {
+    [self addPromiseForKey:@"availableItems" resolve:resolve reject:reject];
+    [[SKPaymentQueue defaultQueue] restoreCompletedTransactionsWithApplicationUsername:username];
+}
+
 RCT_EXPORT_METHOD(buyProduct:(NSString*)sku
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject) {
@@ -149,6 +156,30 @@ RCT_EXPORT_METHOD(buyProduct:(NSString*)sku
     reject(@"E_DEVELOPER_ERROR", @"Invalid product ID.", nil);
   }
 }
+
+
+RCT_EXPORT_METHOD(buyProductWithUsername:(NSString*)sku username(NSString*)username
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject) {
+    autoReceiptConform = true;
+    SKProduct *product;
+    for (SKProduct *p in validProducts) {
+        if([sku isEqualToString:p.productIdentifier]) {
+            product = p;
+            break;
+        }
+    }
+    if (product) {
+        SKMutablePayment *payment = [SKMutablePayment paymentWithProduct:product];
+        payment.applicationUsername = username;
+        [[SKPaymentQueue defaultQueue] addPayment:payment];
+        [self addPromiseForKey:RCTKeyForInstance(payment.productIdentifier) resolve:resolve reject:reject];
+    } else {
+        reject(@"E_DEVELOPER_ERROR", @"Invalid product ID.", nil);
+    }
+}
+
+
 
 RCT_EXPORT_METHOD(buyProductWithQuantityIOS:(NSString*)sku
                   quantity:(NSInteger*)quantity
@@ -509,4 +540,4 @@ static NSString *RCTKeyForInstance(id instance)
     return [NSString stringWithFormat:@"%p", instance];
 }
 
-@end
+z@end

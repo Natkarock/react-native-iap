@@ -85,6 +85,17 @@ export const getPurchaseHistory = () => Platform.select({
 })();
 
 /**
+ * Gets an invetory of purchases made by the use with specific
+  applicationUsername(IOS only) regardless of consumption status
+ * @param {string} username specific applicationUsername
+ * @returns {Promise<Purchase[]>}
+ */
+export const getPurchaseHistoryForUser = (username) => Platform.select({
+  ios: async() => RNIapIos.getAvailableItemsForUser(username),
+  android: async() => Promise.resolve(),
+})();
+
+/**
  * Get all purchases made by the user (either non-consumable, or haven't been consumed yet)
  * @returns {Promise<Purchase[]>}
  */
@@ -122,6 +133,19 @@ export const buySubscription = (sku, oldSku, prorationMode) => {
 export const buyProduct = (sku) => Platform.select({
   ios: async() => RNIapIos.buyProduct(sku),
   android: async() => RNIapModule.buyItemByType(ANDROID_ITEM_TYPE_IAP, sku, null, 0),
+})();
+
+
+
+/**
+ * Buy a product for current user
+ * @param {string} sku The product's sku/ID
+ * @param {string} username For ios only (applicationUsername)
+ * @returns {Promise<ProductPurchase>}
+ */
+export const buyProductWithUsername = (sku, username) => Platform.select({
+  ios: async() => RNIapIos.buyProductWithUsername(sku, username),
+  android: async() => Promise.resolve(),
 })();
 
 /**
@@ -189,7 +213,7 @@ export const consumePurchase = (token) => Platform.select({
 
 /**
  * Should Add Store Payment (iOS only)
- *   Indicates the the App Store purchase should continue from the app instead of the App Store. 
+ *   Indicates the the App Store purchase should continue from the app instead of the App Store.
  * @returns {null}
  */
 export const getPromotedProduct = () => Platform.select({
@@ -199,7 +223,7 @@ export const getPromotedProduct = () => Platform.select({
 
 /**
  * Buy the currently selected promoted product (iOS only)
- *   Initiates the payment process for a promoted product. Should only be called in response to the `iap-promoted-product` event.  
+ *   Initiates the payment process for a promoted product. Should only be called in response to the `iap-promoted-product` event.
  * @returns {null}
  */
 export const buyPromotedProduct = () => Platform.select({
