@@ -131,11 +131,11 @@ RCT_EXPORT_METHOD(getAvailableItems:(RCTPromiseResolveBlock)resolve
 }
 
 
-/*RCT_EXPORT_METHOD(getAvailableItemsForUser:(NSString*)username resolve:(RCTPromiseResolveBlock)resolve
+RCT_EXPORT_METHOD(getAvailableItemsForUser:(NSString*)username resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject) {
     [self addPromiseForKey:@"availableItemsForUser" resolve:resolve reject:reject];
     [[SKPaymentQueue defaultQueue] restoreCompletedTransactionsWithApplicationUsername:username];
-}*/
+}
 
 RCT_EXPORT_METHOD(buyProduct:(NSString*)sku
                   resolve:(RCTPromiseResolveBlock)resolve
